@@ -43,18 +43,23 @@ if __name__ == '__main__':
     
     mess_data = mess_data.astype(np.float64)
     hep_data = hep_data.astype(np.float64)
-    print(hep_data)
     
     # 66% of train data and 33% of test data
-    # n_mess_train, n_hep_train = mess_data.shape[0] * 2/3, hep_data.shape[0] * 2/3
+    n_mess_train, n_hep_train = int(mess_data.shape[0] * 2/3), int(hep_data.shape[0] * 2/3)
     
-    # mess_x_train = mess_data[:n_mess_train, :mess_data.shape[1]] # All columns except last one
-    # mess_y_train = mess_data[:n_mess_train, -1] # only get last column i.e. class
-    # print(mess_x_train.shape)
-    # print(mess_y_train.shape)
+    # train data set for messidore
+    mess_x_train = mess_data[:n_mess_train, :mess_data.shape[1]-1] # All columns except last one
+    mess_y_train = mess_data[:n_mess_train, -1].reshape(n_mess_train, 1) # only get last column i.e. class
+    # test data set for messidore
+    mess_x_test = mess_data[n_mess_train:, :mess_data.shape[1]-1]
+    mess_y_test = mess_data[n_mess_train:, -1].reshape(mess_data.shape[0] - n_mess_train, 1)
 
-    # mess_x_test = mess_data[n_mess_train:, :mess_data.shape[1]]
-    # mess_y_test = mess_data[n_mess_train:, -1]
-    # print(mess_x_test.shape)
-    # print(mess_y_test.shape)
+    #train data set for hepatitis
+    hep_x_train = hep_data[:n_hep_train, :hep_data.shape[1]-1]
+    hep_y_train = hep_data[:n_hep_train, -1].reshape(n_hep_train, 1)
+    #test data set for hepatitis
+    hep_x_test = hep_data[n_hep_train:, :hep_data.shape[1]-1]
+    hep_y_test = hep_data[n_hep_train:, -1].reshape(hep_data.shape[0] - n_hep_train, 1)
 
+    ## We have test and train for both
+    ## Let's work from here
