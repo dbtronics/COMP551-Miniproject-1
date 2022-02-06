@@ -141,6 +141,11 @@ def predict(self,data_test):
                 node = node.right
           class_probs[n,:] = node.class_probs
         return class_probs
+    
+def evaluate_acc(self,y_test,y_pred):
+    accuracy = np.sum(y_pred == y_test)/y_test.shape[0]
+    print(f'accuracy is {accuracy*100:.1f}.')
+    return accuracy
 
 from sklearn import datasets
 
