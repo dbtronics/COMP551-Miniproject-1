@@ -53,46 +53,46 @@ class KNN:
 
 from sklearn import datasets
 #to read more about load_iris() function refer to: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html
-dataset = datasets.load_iris()
+# dataset = datasets.load_iris()
 #uncomment this if you want to see the description of the dataset 
 #print(dataset.DESCR)
 #uncomment to see the details about the dataset class
 #help(dataset)
 
-x, y = dataset['data'][:,:2], dataset['target']                                     #slices the first two columns or features from the data
+# x, y = dataset['data'][:,:2], dataset['target']                                     #slices the first two columns or features from the data
 
 #print the feature shape and classes of dataset 
-(N,D), C = x.shape, np.max(y)+1
-print(f'instances (N) \t {N} \n features (D) \t {D} \n classes (C) \t {C}')
+# (N,D), C = x.shape, np.max(y)+1
+# print(f'instances (N) \t {N} \n features (D) \t {D} \n classes (C) \t {C}')
 
-inds = np.random.permutation(N)    #generates an indices array from 0 to N-1 and permutes it 
+# inds = np.random.permutation(N)    #generates an indices array from 0 to N-1 and permutes it 
 
-#split the dataset into train and test
-x_train, y_train = x[inds[:100]], y[inds[:100]]
-x_test, y_test = x[inds[100:]], y[inds[100:]]
+# #split the dataset into train and test
+# x_train, y_train = x[inds[:100]], y[inds[:100]]
+# x_test, y_test = x[inds[100:]], y[inds[100:]]
 
 #########################################################
 ## TESTING KNN and understand the function of the code ##
 #########################################################
-n_params = 11
-accuracy_array = np.zeros(n_params)
-for i in range (11):
-    model = KNN(K=i)
-    y_prob, knns = model.fit(x_train, y_train).predict(x_test)
-    print('K = ', i)
-    print('knns shape:', knns.shape)
-    print('y_prob shape:', y_prob.shape)
-    y_pred = np.argmax(y_prob, axis = -1)
-    accuracy = model.evaluate_acc(y_train, y_pred)
-    print('accuracy = ', accuracy)
-    accuracy_array[i] = accuracy
-    print('\n')
+# n_params = 11
+# accuracy_array = np.zeros(n_params)
+# for i in range (n_params):
+#     model = KNN(K=i)
+#     y_prob, knns = model.fit(x_train, y_train).predict(x_test)
+#     print('K = ', i)
+#     print('knns shape:', knns.shape)
+#     print('y_prob shape:', y_prob.shape)
+#     y_pred = np.argmax(y_prob, axis = -1)
+#     accuracy = model.evaluate_acc(y_train, y_pred)
+#     print('accuracy = ', accuracy)
+#     accuracy_array[i] = accuracy
+#     print('\n')
 
-knn = np.argmax(accuracy_array)
-print('Accuracy with KNN', knn)
-print(accuracy_array[knn])
+# knn = np.argmax(accuracy_array)
+# print('Accuracy with KNN', knn)
+# print(accuracy_array[knn])
 
-plt.scatter(np.arange(n_params), accuracy_array)
-plt.xlabel('KNN parameter')
-plt.ylabel('Accuracy in %')
-plt.show()
+# plt.scatter(np.arange(n_params), accuracy_array)
+# plt.xlabel('KNN parameter')
+# plt.ylabel('Accuracy in %')
+# plt.show()
