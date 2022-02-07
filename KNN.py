@@ -47,8 +47,12 @@ class KNN:
         return y_prob, knns
 
     def evaluate_acc(self, y_test, y_pred):
-        correct_pred = y_test = y_pred # gets all the index of correct prediction
-        accuracy = np.sum(correct_pred)/y_test.shape[0] * 100 # in percentage
+        # correct_pred = y_test == y_pred # gets all the index of correct prediction
+        # accuracy = np.sum(y_test == y_pred) # in percentage
+        # accuracy /= y_test.shape[0] * 100
+        correct_pred, accuracy = 0, 0
+        for i in range(y_pred.shape[0]): correct_pred += y_test[i] == y_pred[i]
+        accuracy = correct_pred/(y_pred.shape[0]) * 100
         return accuracy
 
 from sklearn import datasets
